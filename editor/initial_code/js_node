@@ -1,6 +1,6 @@
 "use strict";
 
-function frequencySort(a) {
+function frequencySort(items) {
 
     // your code here
     return 0;
