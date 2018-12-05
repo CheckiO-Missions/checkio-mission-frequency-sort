@@ -35,7 +35,7 @@ from tests import TESTS
 
 cover_iterable = '''
 def cover(func, in_data):
-    return list(func(**in_data))
+    return list(func(*in_data))
 '''
 
 api.add_listener(

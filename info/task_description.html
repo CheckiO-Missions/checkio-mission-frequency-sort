@@ -24,11 +24,11 @@
 
 {% if interpreter.slug == "js-node" %}
 <pre class="brush: javascript">frequencySort([4, 6, 2, 2, 6, 4, 4, 4]) == [4, 4, 4, 4, 6, 6, 2, 2]
-frequencySort([['bob', 'bob', 'carl', 'alex', 'bob']]) == ['bob', 'bob', 'bob', 'carl', 'alex']
+frequencySort(['bob', 'bob', 'carl', 'alex', 'bob']) == ['bob', 'bob', 'bob', 'carl', 'alex']
 </pre>
 {% else %}
 <pre class="brush: python">frequency_sort([4, 6, 2, 2, 6, 4, 4, 4]) == [4, 4, 4, 4, 6, 6, 2, 2]
-frequency_sort([['bob', 'bob', 'carl', 'alex', 'bob']]) == ['bob', 'bob', 'bob', 'carl', 'alex']
+frequency_sort(['bob', 'bob', 'carl', 'alex', 'bob']) == ['bob', 'bob', 'bob', 'carl', 'alex']
 </pre>
 {% endif %}
 </div>

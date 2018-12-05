@@ -15,7 +15,7 @@ TESTS = {
             "answer": [4, 4, 4, 4, 6, 6, 2, 2]
         },
         {
-            "input": [[['bob','bob','carl','alex','bob']]],
+            "input": [['bob','bob','carl','alex','bob']],
             "answer": ['bob','bob','bob','carl','alex']
         },
         {
