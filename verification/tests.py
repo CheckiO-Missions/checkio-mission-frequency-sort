@@ -15,6 +15,10 @@ TESTS = {
             "answer": [4, 4, 4, 4, 6, 6, 2, 2]
         },
         {
+            "input": [[4, 6, 2, 2, 2, 6, 4, 4, 4]],
+            "answer": [4, 4, 4, 4, 2, 2, 2, 6, 6]
+        },
+        {
             "input": [['bob','bob','carl','alex','bob']],
             "answer": ['bob','bob','bob','carl','alex']
         },
