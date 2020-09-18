@@ -1,6 +1,6 @@
 import assert from "assert";
 
-function frequencySort(items: any[]): any[] {
+function frequencySort<T extends number|string>(items: T[]): T[] {
     // your code here
     return [];
 }
