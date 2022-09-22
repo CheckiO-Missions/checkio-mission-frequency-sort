@@ -1,0 +1,43 @@
+<!-- Describe task in general -->
+
+<p>
+    Відсортуй даний {% if is_js %}масив{% else %}ітерований об'єкт{% endif %}
+    так, щоб його елементи йшли в порядку спадання їх частоти, тобто кількості появи в послідовності.
+    Якщо два елементи мають однакову частоту, вони повинні йти в порядку першої
+    появи в початковому {% if is_js %}масиві{% else %}ітерованому об'єкті{% endif %}.
+</p>
+
+<!-- Explain input and output values -->
+<p>
+    <strong>Вхідні дані:</strong> {% if is_js %}Масив{% else %}Ітерований об'єкт (список, кортеж, ітератор){% endif %}
+</p>
+
+<p>
+    <strong>Вихідні дані:</strong> {% if is_js %}Масив{% else %}Ітерований об'єкт (список, кортеж, ітератор){% endif %}
+</p>
+
+
+<!-- Put some usage examples -->
+<div class="for_info_only">
+    <p>
+        <strong>Приклади:</strong>
+    </p>
+    <pre class="brush: {% if is_js %}javascript{% else %}python{% endif %}">{{init_code_tmpl}}</pre>
+</div>
+
+<!-- Here you can explain some constraints for input-->
+<!-- The section is optional -->
+<p>
+    <strong>Передумова:</strong>
+    <ul>
+        <li>
+            <i>елементи можуть бути цілими числами або рядками.</i>
+        </li>
+    </ul>
+</p>
+
+<p>
+    <i>Ця місія була взяти з Python CCPS 109 осені 2018. Вона викладалася в Ryerson Chang School of Continuing Education <a href="http://www.scs.ryerson.ca/~ikokkari/">Ilkka Kokkarinen</a></i>
+</p>
+
+
