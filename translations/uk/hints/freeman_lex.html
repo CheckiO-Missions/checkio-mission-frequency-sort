@@ -1,0 +1,160 @@
+<body data-author="freeman_lex">
+<div class="question-answer">
+    <div class="question">
+        Я уявлення не маю, як розв'язати цю місію.
+    </div>
+    <div class="answer">
+        Загалом, ідея доволі проста - правильно визначити правило сортування і 
+        застосувати його як ключ функції сортування.
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        З чого ж мені почати?
+    </div>
+    <div class="answer">
+        Використай вбудовану функцію <a target="_blank" href="https://www.w3schools.com/python/ref_func_sorted.asp">sorted()</a>.
+        Вона повертає відсортований список або інший ітерований об'єкт і має аргумент
+        "key", який визначає правило сортування (а це ж саме те, що тобі потрібно!).
+        <br />
+        <br />
+        <pre class="brush: python">
+result = sorted(items, key=...)        
+        </pre>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        Добре. Що робити далі?
+    </div>
+    <div class="answer">
+        Аргумент "Key" (правило сортування) це функція, яка порівнює елементи за
+        певним параметром і обирає, який елемент йде першим. Що встановити цю функцію,
+        використай lambda вираз (анонімну функцію), яка прийматиме кожен елемент
+        списку як аргумент.
+        <br />
+        <br />
+        <pre class="brush: python">
+result = sorted(items, key=lambda element: ...)        
+        </pre>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        Допоможи мені встановити правило сортування.
+    </div>
+    <div class="answer">
+        В описі місії сказано, що тобі потрібно відсортувати елементи відповідно до їх
+        частоти - кількості появи в списку. Звичний шлях порахувати кількість 
+        однакових елементів у списку, це використати метод списку
+        <a target="_blank" href="https://www.w3schools.com/python/ref_list_count.asp">count()</a>.
+        <br />
+        <br />
+        <pre class="brush: python">
+items = [1, 2, 3, 2]
+print(items.count(3))
+
+# output:
+# 1
+        </pre>
+        Тож, тобі потрібно використати цей метод для сортування.
+        <br />
+        <br />
+        <pre class="brush: python">
+result = sorted(items, key=lambda element: items.count(element))        
+        </pre>
+        Порядок сортування за замовчуванням - за зростанням, тобто елемент з однією появою
+        буде йти перед таким, що з двома появами. Але ж відповідно до опису тобі
+        потрібне протилежне - більш частий елемент має йти спочатку. Щоб досягнути
+        цього, зроби просту і водночас хитру річ - використай результат "count" із мінусом!
+        Тоді елемент із частотою "-2" йтиме перед елементом з частотою "-1", оскільки -2 менше за -1.
+        <br />
+        <br />
+        <pre class="brush: python">
+result = sorted(items, key=lambda element: -items.count(element))        
+        </pre> 
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        Але що робити, коли два або більше елементів мають однакову частоту?
+    </div>
+    <div class="answer">
+        Знову ж таки, опис говорить, що тобі потрібно відсортувати їх за першою появою
+        у списку. Використай метод списків <a target="_blank" href="https://www.w3schools.com/python/ref_list_index.asp">index()</a>,
+        який повертає індекс (порядковий номер) першої появи елемента у списку
+        Оскільки елемент із меншим індексом має йти раніше, ніж з більшим
+        (сортування за зростанням)б нам не потрібно використовувати мінус,порядок
+        сортування за замовчуванням цілком підходить.
+    <br />
+    <br />
+        <pre class="brush: python">
+sorted(items, key=lambda i: -items.count(i), items.index(i))
+        </pre>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        То як має виглядати моє остаточне рішення?
+    </div>
+    <div class="answer">
+        Один маленький крок щодо коду лишився: функція сортування має бути одним об'єкто,
+        але зараз ти маєш два - -items.count(i) і items.index(i). Щоб усе запрацювало,
+        об'єднай їх у кортеж чи список. Не забудь обгорнути свій код у вираз функції
+        (з підказками щодо типу) і повернути вираз, який ти склав. Отже, ось твій розв'язок:
+        <br />
+        <br />
+        <pre class="brush: python">
+def frequency_sort(items: list[str|int]) -> Iterable[str|int]:
+
+    return sorted(items, key=lambda i: (-items.count(i), items.index(i)))
+        </pre>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        Покажи мені більше розв'язків!<br />
+        Адже я хочу бути справжнім Python Ніндзею!
+    </div>
+    <div class="answer">
+        Звісно, тримай!<br />
+        у цьому розв'язку два кроки: спочатку відсортувати "items" за зростанням
+        по індексу (за першою появою), потім за спаданням по частоті. Зверни увагу на аргумент
+        "reversed", який за замовчуванням False, і відсутність lambda виразу. 
+        <br />
+        <br />
+        <pre class="brush: python">
+def frequency_sort(items: list[str|int]) -> Iterable[str|int]:
+
+    items = sorted(items, key=items.index)
+    
+    return sorted(items, key=items.count, reverse=True)
+        </pre>
+        Клас Counter class з модуля collections створю словник з унікальними елементами
+        як ключами і їх частотою як значеннями. Пари розташовані за першою появою.
+        Тож ти береш всі елементи словника, сортуєш їх за ключем - частота кожного елемента (c.get
+        для кожного елемента бере його значення з "c") у порядку спадання.
+        <br />
+        <br />
+        <pre class="brush: python">
+from collections import Counter
+
+
+def frequency_sort(items: list[str|int]) -> Iterable[str|int]:
+
+    c = Counter(items)
+
+    return sorted(c.elements(), key=c.get, reverse = True)
+        </pre>
+        Тисни "Best solutions" в меню місії і побачиш багато інших цікавих розв'язків!
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        Дякую! Тепер я знаю і розумію більше! Все працює як слід!
+    </div>
+    <div class="answer">
+        Приємно це чути!
+    </div>
+</div>
+</body>

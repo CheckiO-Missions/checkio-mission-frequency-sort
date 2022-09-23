@@ -80,7 +80,7 @@ result = sorted(items, key=lambda element: -items.count(element))
         But what to do, when two or more elements have equal frequency?
     </div>
     <div class="answer">
-        The description says, you need to sort them by first appearance in the list.
+        The mission description says, you need to sort them by first appearance in the list.
         Use list method <a target="_blank" href="https://www.w3schools.com/python/ref_list_index.asp">index()</a>,
         which returns the index of first occurrence of the element in the list.
         Since the element with smaller index should go earlier than with bigger
@@ -98,9 +98,9 @@ sorted(items, key=lambda i: -items.count(i), items.index(i))
     </div>
     <div class="answer">
         One small step about code remains: sorting function should be a single object, but now
-        we have two - -items.count(i) and items.index(i). To make it works, join
+        you have two - -items.count(i) and items.index(i). To make it works, join
         them in a tuple or list. Don't forget to wrap the code into function expression
-        and return the the expressions you build. So, here is the solution:
+        (with type hints) and return the expressions you build. So, here is the solution:
         <br />
         <br />
         <pre class="brush: python">
@@ -117,17 +117,33 @@ def frequency_sort(items: list[str|int]) -> Iterable[str|int]:
     </div>
     <div class="answer">
         Sure, grab it!<br />
-        
+        In this solution there are two steps: first to sort "items" ascending by
+        index elements, then descending by frequency. Pay attention to the argument
+        "reversed" which is False by default and the absence of lambda expression. 
         <br />
         <br />
         <pre class="brush: python">
+def frequency_sort(items: list[str|int]) -> Iterable[str|int]:
 
+    items = sorted(items, key=items.index)
+    
+    return sorted(items, key=items.count, reverse=True)
         </pre>
-        
+        Counter class from collections module creates a dictionary with unique elements
+        as keys and their frequency as values. Pairs ordered by first appearance.
+        So you take all elements, sort them by key - frequency of each element (c.get
+        gets for each element its value from "c") with descending order.
         <br />
         <br />
         <pre class="brush: python">
+from collections import Counter
 
+
+def frequency_sort(items: list[str|int]) -> Iterable[str|int]:
+
+    c = Counter(items)
+
+    return sorted(c.elements(), key=c.get, reverse = True)
         </pre>
         Click "Best solutions" at mission menu and see a lot of other
         interesting solutions!
