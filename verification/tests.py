@@ -11,7 +11,7 @@ Each test is a dict with
 TESTS = {
     "Basics": [
         {
-            "input": [(4, 6, 2, 2, 6, 4, 4, 4)],
+            "input": [[4, 6, 2, 2, 6, 4, 4, 4]],
             "answer": [4, 4, 4, 4, 6, 6, 2, 2],
         },
         {
@@ -19,7 +19,7 @@ TESTS = {
             "answer": [4, 4, 4, 4, 2, 2, 2, 6, 6],
         },
         {
-            "input": [('bob','bob','carl','alex','bob')],
+            "input": [['bob','bob','carl','alex','bob']],
             "answer": ['bob','bob','bob','carl','alex'],
         },
         {
@@ -33,10 +33,6 @@ TESTS = {
         {
             "input": [[1]],
             "answer": [1],
-        },
-        {
-            "input": [range(6)],
-            "answer": [0, 1, 2, 3, 4, 5],
         },
     ],
     "Extra": [

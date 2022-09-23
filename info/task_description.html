@@ -1,21 +1,21 @@
 <!-- Describe task in general -->
 
 <p>
-    Sort the given {% if is_js %}Array{% else %}Iterable{% endif %} so that its
+    Sort the given {% if is_js %}Array{% else %}list{% endif %} so that its
     elements end up in the decreasing frequency order, that is, the number of
     times they appear in elements. If two elements have the same frequency, they
-    should end up in the same order as the first appearance in the {% if is_js %}Array{% else %}Iterable{% endif %}.
+    should end up in the same order as the first appearance in the {% if is_js %}Array{% else %}list{% endif %}.
 </p>
 
 
 
 <!-- Explain input and output values -->
 <p>
-    <strong>Input:</strong> {% if is_js %}Array{% else %}Iterable (list, tuple, iterator){% endif %}
+    <strong>Input:</strong> {% if is_js %}Array{% else %}List{% endif %}
 </p>
 
 <p>
-    <strong>Output:</strong> {% if is_js %}Array{% else %}Iterable (list, tuple, iterator){% endif %}
+    <strong>Output:</strong> {% if is_js %}Array{% else %}List or another Iterable (tuple, iterator, generator){% endif %}
 </p>
 
 
@@ -24,10 +24,8 @@
     <p>
         <strong>Examples:</strong>
     </p>
-
-<pre class="brush: {% if is_js %}javascript{% else %}python{% endif %}">{{init_code_tmpl}}</pre>
+    <pre class="brush: {% if is_js %}javascript{% else %}python{% endif %}">{{init_code_tmpl}}</pre>
 </div>
-
 
 <!-- Here you can explain some constraints for input-->
 <!-- The section is optional -->
@@ -41,7 +39,9 @@
     
 </p>
 
-
-<p><i>The mission was taken from Python CCPS 109 Fall 2018. It's being taught for Ryerson Chang School of Continuing Education by <a href="http://www.scs.ryerson.ca/~ikokkari/">Ilkka Kokkarinen</a></i></p>
+<p>
+    <i>The mission was taken from Python CCPS 109 Fall 2018. It's being taught for
+    Ryerson Chang School of Continuing Education by <a href="http://www.scs.ryerson.ca/~ikokkari/">Ilkka Kokkarinen</a></i>
+</p>
 
 
