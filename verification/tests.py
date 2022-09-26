@@ -12,28 +12,28 @@ TESTS = {
     "Basics": [
         {
             "input": [[4, 6, 2, 2, 6, 4, 4, 4]],
-            "answer": [4, 4, 4, 4, 6, 6, 2, 2]
+            "answer": [4, 4, 4, 4, 6, 6, 2, 2],
         },
         {
             "input": [[4, 6, 2, 2, 2, 6, 4, 4, 4]],
-            "answer": [4, 4, 4, 4, 2, 2, 2, 6, 6]
+            "answer": [4, 4, 4, 4, 2, 2, 2, 6, 6],
         },
         {
             "input": [['bob','bob','carl','alex','bob']],
-            "answer": ['bob','bob','bob','carl','alex']
+            "answer": ['bob','bob','bob','carl','alex'],
         },
         {
             "input": [[17, 99, 42]],
-            "answer": [17, 99, 42]
+            "answer": [17, 99, 42],
         },
         {
             "input": [[]],
-            "answer": []
+            "answer": [],
         },
         {
             "input": [[1]],
-            "answer": [1]
-        }
+            "answer": [1],
+        },
     ],
     "Extra": [
         {
