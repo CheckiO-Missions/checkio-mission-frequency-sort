@@ -113,7 +113,7 @@ def frequency_sort(items: list[str|int]) -> Iterable[str|int]:
     
     return items
         </pre>
-        <p>Клас <b class="code"> Counter</b> з модуля <b class="code">collections</b> створює словник з унікальними елементами як ключами і їх частотою як значеннями. Пари розташовані за першою появою. Тож ти береш всі елементи словника, сортуєш їх за ключем - частота кожного елемента (<b class="code">c.get</b> для кожного елемента бере його значення з <b class="code">c</b>) у порядку спадання.</p>
+        <p>Клас <b class="code">Counter</b> з модуля <b class="code">collections</b> створює словник з унікальними елементами як ключами і їх частотою як значеннями. Пари розташовані за першою появою. Тож ти береш всі елементи словника, сортуєш їх за ключем - частота кожного елемента (<b class="code">c.get</b> для кожного елемента бере його значення з <b class="code">c</b>) у порядку спадання.</p>
         <pre class="brush: python">
 from typing import Iterable
 from collections import Counter
