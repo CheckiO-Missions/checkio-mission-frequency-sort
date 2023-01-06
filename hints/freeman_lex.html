@@ -87,7 +87,7 @@ from typing import Iterable
 
 def frequency_sort(items: list[str|int]) -> Iterable[str|int]:
 
-    result = sorted(items, key=lambda i: -items.count(i), items.index(i))
+    result = sorted(items, key=lambda i: (-items.count(i), items.index(i)))
 
     return result
         </pre>
