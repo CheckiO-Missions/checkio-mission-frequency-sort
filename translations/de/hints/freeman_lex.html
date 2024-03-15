@@ -1,0 +1,141 @@
+<body data-author="freeman_lex">
+<div class="question-answer">
+    <div class="question">
+        Ich habe keine Ahnung, wie ich mit der Lösung dieser Aufgabe beginnen soll.
+    </div>
+    <div class="answer">
+        <p>Die allgemeine Idee ist einfach - eine Sortierregel richtig zu definieren und
+        sie als Schlüssel in der Sortierfunktion zu verwenden.</p> 
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        Womit sollte ich beginnen?
+    </div>
+    <div class="answer">
+        <p>Verwenden Sie die eingebaute Funktion <a target="_blank" href="https://www.w3schools.com/python/ref_func_sorted.asp">sorted()</a>. Sie gibt eine sortierte Liste oder ein anderes Iterable zurück und hat das Argument <b class="code">key</b>, das die Sortierregel definiert (das ist genau das, was Sie brauchen).</p>
+        <pre class="brush: python">
+result = sorted(items, key=...)        
+        </pre>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        Nun gut. Was ist als nächstes zu tun?
+    </div>
+    <div class="answer">
+        <p><b class="code">Key</b> das Argument (Sortierregel) ist eine Funktion, die Elemente anhand eines Parameters vergleicht und auswählt, welches Element zuerst kommt. Um eine bestimmte Funktion zu definieren, verwenden Sie <b class="code">lambda</b> Ausdruck (anonyme Funktion), der jedes Element in der Liste aufnimmt.</p>
+        <pre class="brush: python">
+result = sorted(items, key=lambda i: ...)        
+        </pre>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        Helfen Sie mir, eine Sortierregel zu definieren.
+    </div>
+    <div class="answer">
+        <p>Die Beschreibung sagt, dass Sie die Elemente nach ihrer Häufigkeit sortieren müssen - 
+        anzahl der Vorkommen in der Liste. Eine gängige Methode zum Zählen der Anzahl desselben
+        elementes in der Liste zu zählen, ist die Verwendung der Methode <a target="_blank" href="https://www.w3schools.com/python/ref_list_count.asp">list.count()</a>.</p>
+        <pre class="brush: python">
+items = [1, 2, 3, 2]
+print(items.count(3))
+        </pre>
+        <div class="output">
+            Ausgabe
+           <pre>
+1
+            </pre>
+        </div>
+        <p>Sie müssen also diese Methode zum Sortieren verwenden.</p>
+        <pre class="brush: python">
+result = sorted(items, key=lambda i: items.count(i))        
+        </pre> 
+        <p>Die Standard-Sortierreihenfolge ist aufsteigend, d.h. ein Element mit 1 Vorkommen wird vor dem mit 2 Vorkommen sortiert
+        vor dem Element mit 2 Vorkommen. Laut Beschreibung brauchen Sie aber das 
+        das Gegenteil - ein häufigeres Element sollte zuerst erscheinen. Um dies zu erreichen, tun Sie etwas so Einfaches
+        aber knifflige Sache - verwenden Sie das Ergebnis von <b class="code">count</b> mit Minus! Also, das Element mit der
+        "-2" vor dem Element mit der Häufigkeit "-1", da -2 kleiner als -1 ist.</p>
+        <pre class="brush: python">
+result = sorted(items, key=lambda i: -items.count(i))        
+        </pre> 
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        Aber was tun, wenn zwei oder mehr Elemente die gleiche Häufigkeit haben?
+    </div>
+    <div class="answer">
+        <p>In der Missionsbeschreibung steht, dass Sie sie nach dem ersten Auftreten in der Liste sortieren müssen.
+        Verwenden Sie die Listenmethode <a target="_blank" href="https://www.w3schools.com/python/ref_list_index.asp">list.index()</a>, die den Index des ersten Auftretens des Elements in der Liste zurückgibt. Da das Element mit dem kleineren Index früher erscheinen sollte als das mit dem größeren (aufsteigende Reihenfolge), brauchen Sie kein Minus zu verwenden, die Standard-Sortierreihenfolge ist in Ordnung.</p>
+        <pre class="brush: python">
+result = sorted(items, key=lambda i: -items.count(i), items.index(i))
+        </pre>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        Wie sollte also meine endgültige Lösung aussehen?
+    </div>
+    <div class="answer">
+        <p>Ein kleiner Schritt im Code bleibt noch: die Sortierfunktion sollte ein einziges Objekt sein, aber jetzt
+        haben Sie zwei - <b class="code">-items.count(i)</b> und <b class="code">index(i)</b>. Damit es funktioniert, fügen Sie sie zu einem Tupel oder einer Liste zusammen. Vergessen Sie nicht, den Code in einen Funktionsausdruck zu verpacken (mit Typ-Hinweisen) und die von Ihnen erstellten Ausdrücke zurückzugeben. So, hier ist die Lösung:</p>
+        <pre class="brush: python">
+from typing import Iterable
+
+
+def frequency_sort(items: list[str|int]) -> Iterable[str|int]:
+
+    result = sorted(items, key=lambda i: (-items.count(i), items.index(i)))
+
+    return result
+        </pre>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        Zeigen Sie mir mehr Lösungen!<br />
+        denn ich möchte ein echter Python-Ninjaa sein!
+    </div>
+    <div class="answer">
+        <p>Klar, greifen Sie zu!</p>
+        <p>In dieser Lösung gibt es zwei Schritte: zuerst wird <b class="code">items</b> aufsteigend nach Index sortiert, dann absteigend nach Häufigkeit. Achten Sie auf das Argument
+        <b class="code">reverse</b> das standardmäßig <b class="code">False</b> ist und das Fehlen des Ausdrucks <b class="code">lambda</b>.</p>
+        <pre class="brush: python">
+from typing import Iterable
+
+
+def frequency_sort(items: list[str|int]) -> Iterable[str|int]:
+
+    items = sorted(items, key=items.index)
+    items = sorted(items, key=items.count, reverse=True)
+    
+    return items
+        </pre>
+        <p><b class="code">Counter</b> die Klasse aus dem Modul <b class="code">collections</b> erstellt ein Wörterbuch mit eindeutigen Elementen als Schlüssel und deren Häufigkeit als Wert. Die Paare werden nach dem ersten Auftreten sortiert. Sie nehmen also alle Elemente und sortieren sie nach Schlüssel - Häufigkeit jedes Elements (<b class="code">c.get</b> erhält für jedes Element seinen Wert von <b class="code">c</b> ) in absteigender Reihenfolge.</p>
+        <pre class="brush: python">
+from typing import Iterable
+from collections import Counter
+
+
+def frequency_sort(items: list[str|int]) -> Iterable[str|int]:
+
+    c = Counter(items)
+    result = sorted(c.elements(), key=c.get, reverse = True)
+
+    return result
+        </pre>
+        <p>Klicken Sie im Missionsmenü auf "Beste Lösungen" und sehen Sie sich eine Menge anderer
+        interessante Lösungen!</p>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        Vielen Dank! Ich weiß und verstehe jetzt mehr! Alles funktioniert bestens!
+    </div>
+    <div class="answer">
+        Freut mich zu hören!
+    </div>
+</div>
+</body>
