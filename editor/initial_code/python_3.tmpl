@@ -1,5 +1,5 @@
 {% comment %}New initial code template{% endcomment %}
-{% block env %}from typing import Iterable{% endblock env %}
+{% block env %}from collections.abc import Iterable{% endblock env %}
 
 {% block start %}
 def frequency_sort(items: list[str|int]) -> Iterable[str|int]:
